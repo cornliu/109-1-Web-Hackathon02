@@ -1,5 +1,5 @@
 # 109-1-Web-Hackathon02 - My Sudoku
-A simple sudoku game made with ReactJS. [[demo video]]()
+A simple sudoku game made with ReactJS. [[demo video]](https://youtu.be/Y-CJbfves4Y)
 ![](https://i.imgur.com/nfCTHYt.png)
 
 ## Getting Started (Before class)
