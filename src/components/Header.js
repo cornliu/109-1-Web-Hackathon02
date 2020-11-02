@@ -39,13 +39,6 @@ export default function Header(props) {
         props.loadProblem(String(event.target.value));
     };
 
-    const handleAutocomplete = () => {
-        // props.updateState()
-    }
-    const handleResetGame = () => {
-        // props.updateState()
-    }
-
     const problemList = props.problemList.map(p => <MenuItem value={p}>{p}</MenuItem>)
     return (
         <div className={classes.headerHolder}>
@@ -67,10 +60,10 @@ export default function Header(props) {
                         {problemList}
                     </Select>
                 </FormControl>
-                <Button className={classes.button} onClick={handleAutocomplete} variant="contained" size="small">
+                <Button className={classes.button} variant="contained" size="small">
                     Auto Complete
                 </Button>
-                <Button className={classes.button} onClick={handleResetGame} variant="contained" size="small">
+                <Button className={classes.button} variant="contained" size="small">
                     Reset Game
                 </Button>
             </div>

@@ -127,8 +127,8 @@ A simple sudoku game made with ReactJS. [[demo video]](https://youtu.be/Y-CJbfve
     * When an invalid input is given, you should make the border style of the gameboard (id="game-board") to `"8px solid #E77"` for 1 minute
     * **Hint.** You may use the following code:
         ```javascript=
-        this.setState({ gameBoardBoarderStyle: "8px solid #E77" });
-        setTimeout(() => { this.setState({ gameBoardBoarderStyle: "8px solid #333" }); }, 1000);
+        this.setState({ gameBoardBorderStyle: "8px solid #E77" });
+        setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
         ```
 3. **Set off Firework effect when the user win (2%)**
     * **Hint.** You may use the following code:

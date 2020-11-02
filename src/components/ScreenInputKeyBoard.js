@@ -33,7 +33,7 @@ export default function ScreenInputKeyBoard(props) {
 
     return (
         <div className={classes.inputKeyboard} >
-            {numbers.map(num => (<div id={`keyboard-input-${num}`} className={classes.grid} onClick={() => props.hadleScreenKeyboardInput(num)}>{num === 0 ? "" : num}</div>))}
+            {numbers.map(num => (<div id={`keyboard-input-${num}`} className={classes.grid} onClick={() => props.handleScreenKeyboardInput(num)}>{num === 0 ? "" : num}</div>))}
         </div>
     );
 }

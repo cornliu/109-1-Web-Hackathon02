@@ -12,19 +12,19 @@ class Sudoku extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
-            problem: null,
-            gridValues: null,
-            selectedGrid: { row_index: -1, col_index: -1 },
-            gameBoardBoarderStyle: "8px solid #000",
-            completeFlag: false,
-            conflicts: [{ row_index: -1, col_index: -1 }]
+            loading: true, // Return loading effect if this is true.
+            problem: null, // Stores problem data. See "../problems/" for more information.This is the origin problem and should not be modified. This is used to distinguish the fixed numbers from the editable values
+            gridValues: null,  // A 2D array storing the current values on the gameboard. You should update this when updating the game board values.
+            selectedGrid: { row_index: -1, col_index: -1 }, // This objecct store the current selected grid position. Update this when a new grid is selected.
+            gameBoardBorderStyle: "8px solid #000", // This stores the gameBoarderStyle and is passed to the gameboard div. Update this to have a error effect (Bonus #2).
+            completeFlag: false, // Set this flag to true when you wnat to set off the firework effect.
+            conflicts: [{ row_index: -1, col_index: -1 }] // The array stores all the conflicts positions triggered at this moment. Update the array whenever you needed.
         }
     }
 
     handle_grid_1x1_click = (row_index, col_index) => {
         // TODO
-        
+
         // Useful hints:
         // console.log(row_index, col_index)
         // console.log(this.state.selectedGrid)
@@ -74,10 +74,6 @@ class Sudoku extends Component {
         return rt;
     }
 
-    updateState = (object) => {
-        this.setState(object);
-    }
-
     render() {
         const fxProps = {
             count: 3,
@@ -93,23 +89,74 @@ class Sudoku extends Component {
         }
         return (
             <>
-                <Header problemList={problemList} loadProblem={this.loadProblem} gridValues={this.state.gridValues} problem={this.state.problem} updateState={this.updateState} />
+                <Header problemList={problemList} loadProblem={this.loadProblem} gridValues={this.state.gridValues} problem={this.state.problem} />
                 {this.state.loading ? (<ReactLoading type={"bars"} color={"#777"} height={"40vh"} width={"40vh"} />) : (
-                    <div id="game-board" className="gameBoard" style={{ border: this.state.gameBoardBoarderStyle }}>
+                    <div id="game-board" className="gameBoard" style={{ border: this.state.gameBoardBorderStyle }}>
                         <div className="row">
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 0, 0)} fixedValue={this.extractArray(this.state.problem.content, 0, 0)} offsetY={0} offsetX={0} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 3, 0)} fixedValue={this.extractArray(this.state.problem.content, 3, 0)} offsetY={0} offsetX={3} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 6, 0)} fixedValue={this.extractArray(this.state.problem.content, 6, 0)} offsetY={0} offsetX={6} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
+                            <Grid_9x9 row_offset={0} col_offset={0}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 0, 0)}
+                                fixedValue={this.extractArray(this.state.problem.content, 0, 0)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
+
+                            <Grid_9x9 row_offset={0} col_offset={3}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 3, 0)}
+                                fixedValue={this.extractArray(this.state.problem.content, 3, 0)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
+
+                            <Grid_9x9 row_offset={0} col_offset={6}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 6, 0)}
+                                fixedValue={this.extractArray(this.state.problem.content, 6, 0)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
                         </div>
                         <div className="row">
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 0, 3)} fixedValue={this.extractArray(this.state.problem.content, 0, 3)} offsetY={3} offsetX={0} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 3, 3)} fixedValue={this.extractArray(this.state.problem.content, 3, 3)} offsetY={3} offsetX={3} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 6, 3)} fixedValue={this.extractArray(this.state.problem.content, 6, 3)} offsetY={3} offsetX={6} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
+                            <Grid_9x9 row_offset={3} col_offset={0}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 0, 3)}
+                                fixedValue={this.extractArray(this.state.problem.content, 0, 3)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
+
+                            <Grid_9x9 row_offset={3} col_offset={3}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 3, 3)}
+                                fixedValue={this.extractArray(this.state.problem.content, 3, 3)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
+
+                            <Grid_9x9 row_offset={3} col_offset={6}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 6, 3)}
+                                fixedValue={this.extractArray(this.state.problem.content, 6, 3)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
                         </div>
                         <div className="row">
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 0, 6)} fixedValue={this.extractArray(this.state.problem.content, 0, 6)} offsetY={6} offsetX={0} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 3, 6)} fixedValue={this.extractArray(this.state.problem.content, 3, 6)} offsetY={6} offsetX={3} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
-                            <Grid_9x9 handle_grid_1x1_click={this.handle_grid_1x1_click} value={this.extractArray(this.state.gridValues, 6, 6)} fixedValue={this.extractArray(this.state.problem.content, 6, 6)} offsetY={6} offsetX={6} selectedGrid={this.state.selectedGrid} conflicts={this.state.conflicts} />
+                            <Grid_9x9 row_offset={6} col_offset={0}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 0, 6)}
+                                fixedValue={this.extractArray(this.state.problem.content, 0, 6)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
+
+                            <Grid_9x9 row_offset={6} col_offset={3}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 3, 6)}
+                                fixedValue={this.extractArray(this.state.problem.content, 3, 6)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
+
+                            <Grid_9x9 row_offset={6} col_offset={6}
+                                handle_grid_1x1_click={this.handle_grid_1x1_click}
+                                value={this.extractArray(this.state.gridValues, 6, 6)}
+                                fixedValue={this.extractArray(this.state.problem.content, 6, 6)}
+                                selectedGrid={this.state.selectedGrid}
+                                conflicts={this.state.conflicts} />
                         </div>
                     </div>
                 )}
