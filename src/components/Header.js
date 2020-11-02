@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
     const classes = useStyles();
-    const [proplem, setPreblem] = React.useState('');
+    const [problem, setPreblem] = React.useState('');
 
     const handleChange = (event) => {
         setPreblem(event.target.value);
@@ -56,7 +56,7 @@ export default function Header(props) {
                     <Select
                         labelId="demo-simple-select-outlined-label"
                         id="demo-simple-select-outlined"
-                        value={proplem}
+                        value={problem}
                         onChange={handleChange}
                         label="problem"
                         autoWidth

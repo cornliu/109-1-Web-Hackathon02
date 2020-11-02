@@ -30,7 +30,7 @@ class Sudoku extends Component {
         // console.log(this.state.selectedGrid)
     }
 
-    hadleKeyDownEvent = (event) => {
+    handleKeyDownEvent = (event) => {
         // TODO
 
         // Useful hints:
@@ -39,12 +39,12 @@ class Sudoku extends Component {
         // if (this.state.problem.content[this.state.selectedGrid.row_index][this.state.selectedGrid.col_index] === "0") {}
     }
 
-    hadleScreenKeyboardInput = (num) => {
+    handleScreenKeyboardInput = (num) => {
         // TODO
     }
 
     componentDidMount = () => {
-        window.addEventListener('keydown', this.hadleKeyDownEvent);
+        window.addEventListener('keydown', this.handleKeyDownEvent);
     }
 
     loadProblem = async (name) => {
@@ -114,7 +114,7 @@ class Sudoku extends Component {
                     </div>
                 )}
                 {this.state.completeFlag ? (<Fireworks {...fxProps} />) : null}
-                {this.state.loading ? null : (<ScreenInputKeyBoard hadleScreenKeyboardInput={this.hadleScreenKeyboardInput} />)}
+                {this.state.loading ? null : (<ScreenInputKeyBoard handleScreenKeyboardInput={this.handleScreenKeyboardInput} />)}
             </>
         );
     }
