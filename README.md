@@ -90,7 +90,8 @@ A simple sudoku game made with ReactJS. [[demo video]]()
     
     * Further, You should **apply proper style on different Grid_1x1s depending on their positions (10%)**
         * The borders of each Grid_1x1 are different:
-        ![](https://i.imgur.com/ke41QEV.png)
+        ![](https://i.imgur.com/2BL0ehS.png)
+
         * **Hint.** The position is given by the **props.row_index** and **props.col_index**
         * You could refer to **Grid_9x9.js** for some information
     * Finally, **make the empty grid selectable (10%)**
@@ -114,7 +115,6 @@ A simple sudoku game made with ReactJS. [[demo video]]()
         * **Hint.** You should complete **hadleScreenKeyboardInput** function in Sudoku.js. (Given input number (0~9, Integer), update **gridValues** in state correspondingly)
 3. **Check If the input is valid (20% in total)**
     * When user input a number (with keyboard or screen keyboard), you should **avoid the input if the input is not valid (20%)**
-        * **Hint.** Complete the **isIputValid** function in Sudoku.js and call the function in where it should
 
 ## Bonus
 1. **Highlight conflicts grids (5%)**
