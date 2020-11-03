@@ -52,14 +52,14 @@ class Sudoku extends Component {
                     if (this.state.gridValues[i][col_inx] === String(num)) {
                         flag = true
                         this.setState({ gameBoardBorderStyle: "8px solid #E77" });
-                        setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                        setTimeout(() => { this.setState({ gameBoardBorderStyle: "8px solid #333" }); }, 1000);
                     }
                 }
                 for (let j = 0; j < 9; j++) {
                     if (this.state.gridValues[row_inx][j] === String(num)) {
                         flag = true
                         this.setState({ gameBoardBorderStyle: "8px solid #E77" });
-                        setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                        setTimeout(() => { this.setState({ gameBoardBorderStyle: "8px solid #333" }); }, 1000);
                     }
                 }
                 const test = [[0, 1, 2], [-1, 0, 1], [-2, -1, 0]]
@@ -72,7 +72,7 @@ class Sudoku extends Component {
                         if (this.state.gridValues[row_inx + i][col_inx + j] === String(num)) {
                             flag = true
                             this.setState({ gameBoardBorderStyle: "8px solid #E77" });
-                            setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                            setTimeout(() => { this.setState({ gameBoardBorderStyle: "8px solid #333" }); }, 1000);
                         }
                     });
                 });
@@ -140,14 +140,14 @@ class Sudoku extends Component {
                 if (this.state.gridValues[i][col_inx] === String(num)) {
                     flag = true
                     this.setState({ gameBoardBorderStyle: "8px solid #E77" });
-                    setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                    setTimeout(() => { this.setState({ gameBoardBorderStyle: "8px solid #333" }); }, 1000);
                 }
             }
             for (let j = 0; j < 9; j++) {
                 if (this.state.gridValues[row_inx][j] === String(num)) {
                     flag = true
                     this.setState({ gameBoardBorderStyle: "8px solid #E77" });
-                    setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                    setTimeout(() => { this.setState({ gameBoardBorderStyle: "8px solid #333" }); }, 1000);
                 }
             }
             const test = [[0, 1, 2], [-1, 0, 1], [-2, -1, 0]]
@@ -163,7 +163,7 @@ class Sudoku extends Component {
                     if (this.state.gridValues[row_inx + i][col_inx + j] === num) {
                         flag = true
                         this.setState({ gameBoardBorderStyle: "8px solid #E77" });
-                        setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                        setTimeout(() => { this.setState({ gameBoardBorderStyle: "8px solid #333" }); }, 1000);
                     }
                 });
             });
