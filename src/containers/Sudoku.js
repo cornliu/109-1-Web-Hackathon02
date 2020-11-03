@@ -24,7 +24,7 @@ class Sudoku extends Component {
 
     handle_grid_1x1_click = (row_index, col_index) => {
         // TODO
-
+        this.setState({ selectedGrid: { row_index: row_index, col_index: col_index } })
         // Useful hints:
         // console.log(row_index, col_index)
         // console.log(this.state.selectedGrid)
@@ -32,15 +32,118 @@ class Sudoku extends Component {
 
     handleKeyDownEvent = (event) => {
         // TODO
-
+        // console.log(this.state.gridValues[this.state.selectedGrid.row_index][this.state.selectedGrid.col_index])
         // Useful hints:
-        // console.log(event)
-        // if (this.state.gridValues !== null && this.state.selectedGrid.row_index !== -1 && this.state.selectedGrid.col_index !== -1 && (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {}
+        // console.log(this.state.problem)
+        if (this.state.gridValues !== null && this.state.selectedGrid.row_index !== -1 && this.state.selectedGrid.col_index !== -1 && (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
+            let shift = 0
+            if (event.keyCode >= 48 && event.keyCode <= 57) {
+                shift = 48
+            }
+            else { shift = 96 }
+            let num = event.keyCode - shift
+
+
+            if (num !== 0) {
+                const row_inx = this.state.selectedGrid.row_index
+                const col_inx = this.state.selectedGrid.col_index
+                for (let i = 0; i < 9; i++) {
+                    if (this.state.gridValues[i][col_inx] === String(num)) return
+                }
+                for (let j = 0; j < 9; j++) {
+                    if (this.state.gridValues[row_inx][j] === String(num)) return
+                }
+                const test = [[0, 1, 2], [-1, 0, 1], [-2, -1, 0]]
+                const rowinxmod = test[row_inx % 3]
+                const colinxmod = test[col_inx % 3]
+                rowinxmod.forEach(i => {
+                    colinxmod.forEach(j => {
+                        // console.log(String(this.state.gridValues[row_inx+i][col_inx+j]))
+                        // console.log(String(num))
+                        if (this.state.gridValues[row_inx + i][col_inx + j] === num) {
+                            return
+                        }
+                    });
+                });
+            }
+
+
+
+
+
+
+
+            let new_matrix = []
+            for (let i = 0; i < this.state.gridValues.length; i++) {
+                let row = []
+                for (let j = 0; j < this.state.gridValues[i].length; j++) {
+                    if (i === this.state.selectedGrid.row_index && j === this.state.selectedGrid.col_index && this.state.problem.content[i][j] === "0") {
+                        // console.log(typeof this.state.gridValues[i][j])
+                        row.push(String(event.keyCode - shift))
+                    }
+                    else {
+                        row.push(this.state.gridValues[i][j])
+                    }
+                }
+                new_matrix.push(row)
+            }
+            this.setState({ gridValues: new_matrix })
+            // console.log(event.value)
+            // console.log(this.state.gridValues)
+        }
+        // console.log(this.state.gridValues)
         // if (this.state.problem.content[this.state.selectedGrid.row_index][this.state.selectedGrid.col_index] === "0") {}
     }
 
     handleScreenKeyboardInput = (num) => {
+        console.log(num)
         // TODO
+        // console.log(this.state.gridValues)
+        // console.log(num)
+        // console.log("index:")
+        // console.log(this.state.selectedGrid.row_index)
+        // console.log(this.state.selectedGrid.col_index)
+        if (num !== 0){
+            const row_inx = this.state.selectedGrid.row_index
+            const col_inx = this.state.selectedGrid.col_index
+            for (let i = 0; i < 9; i++) {
+                if (this.state.gridValues[i][col_inx] === String(num)) return
+            }
+            for (let j = 0; j < 9; j++) {
+                if (this.state.gridValues[row_inx][j] === String(num)) return
+            }
+            const test = [[0, 1, 2], [-1, 0, 1], [-2, -1, 0]]
+            const rowinxmod = test[row_inx % 3]
+            const colinxmod = test[col_inx % 3]
+            // console.log("mod")
+            // console.log(rowinxmod)
+            // console.log(colinxmod)
+            rowinxmod.forEach(i => {
+                colinxmod.forEach(j => {
+                    // console.log(String(this.state.gridValues[row_inx+i][col_inx+j]))
+                    // console.log(String(num))
+                    if (this.state.gridValues[row_inx + i][col_inx + j] === num) {
+                        return
+                    }
+                });
+            });
+        }
+        
+
+        let new_matrix = []
+        for (let i = 0; i < this.state.gridValues.length; i++) {
+            let row = []
+            for (let j = 0; j < this.state.gridValues[i].length; j++) {
+                if (i === this.state.selectedGrid.row_index && j === this.state.selectedGrid.col_index && this.state.problem.content[i][j] === "0") {
+                    row.push(String(num))
+                }
+                else {
+                    row.push(this.state.gridValues[i][j])
+                }
+            }
+            new_matrix.push(row)
+        }
+        this.setState({ gridValues: new_matrix })
     }
 
     componentDidMount = () => {
