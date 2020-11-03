@@ -104,23 +104,23 @@ class Sudoku extends Component {
             // console.log(event.value)
             // console.log(this.state.gridValues)
         }
-        // console.log(this.state.gridValues)
-        // if (this.state.problem.content[this.state.selectedGrid.row_index][this.state.selectedGrid.col_index] === "0") {}
-        // let count = 0
-        // for (let i = 0; i < 9; i++) {
-        //     for (let j = 0; j < 9; j++) {
-        //         // console.log(this.state.gridValues[i][j])
-        //         if (this.state.gridValues[i][j] !== "0") {
-        //             count = count+1
-        //         }
-        //     }
-        // }
-        // console.log(count)
-        // console.log(flag)
-        // if (count == 81 && flag == false) {
-        //     this.setState({ completeFlag: true });
-        //     setTimeout(() => { this.setState({ completeFlag: false }); }, 2500);
-        // }
+        console.log(this.state.gridValues)
+        if (this.state.problem.content[this.state.selectedGrid.row_index][this.state.selectedGrid.col_index] === "0") {}
+        let count = 0
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                // console.log(this.state.gridValues[i][j])
+                if (this.state.gridValues[i][j] !== "0") {
+                    count = count+1
+                }
+            }
+        }
+        console.log(count)
+        console.log(flag)
+        if (count == 81 && flag == false) {
+            this.setState({ completeFlag: true });
+            setTimeout(() => { this.setState({ completeFlag: false }); }, 2500);
+        }
 
     }
 
@@ -187,7 +187,7 @@ class Sudoku extends Component {
         }
 
 
-        // let count = 1
+        // let count = 0
         // for (let i = 0; i < 9; i++) {
         //     for (let j = 0; j < 9; j++) {
         //         // console.log(this.state.gridValues[i][j])
