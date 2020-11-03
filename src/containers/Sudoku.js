@@ -34,7 +34,8 @@ class Sudoku extends Component {
         // TODO
         // console.log(this.state.gridValues[this.state.selectedGrid.row_index][this.state.selectedGrid.col_index])
         // Useful hints:
-        // console.log(this.state.problem)
+        let flag = false
+        console.log(this.state.gridValues)
         if (this.state.gridValues !== null && this.state.selectedGrid.row_index !== -1 && this.state.selectedGrid.col_index !== -1 && (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
             let shift = 0
             if (event.keyCode >= 48 && event.keyCode <= 57) {
@@ -43,15 +44,23 @@ class Sudoku extends Component {
             else { shift = 96 }
             let num = event.keyCode - shift
 
-
+            
             if (num !== 0) {
                 const row_inx = this.state.selectedGrid.row_index
                 const col_inx = this.state.selectedGrid.col_index
                 for (let i = 0; i < 9; i++) {
-                    if (this.state.gridValues[i][col_inx] === String(num)) return
+                    if (this.state.gridValues[i][col_inx] === String(num)) {
+                        flag = true
+                        this.setState({ gameBoardBorderStyle: "8px solid #E77" });
+                        setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                    }
                 }
                 for (let j = 0; j < 9; j++) {
-                    if (this.state.gridValues[row_inx][j] === String(num)) return
+                    if (this.state.gridValues[row_inx][j] === String(num)) {
+                        flag = true
+                        this.setState({ gameBoardBorderStyle: "8px solid #E77" });
+                        setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                    }
                 }
                 const test = [[0, 1, 2], [-1, 0, 1], [-2, -1, 0]]
                 const rowinxmod = test[row_inx % 3]
@@ -60,39 +69,59 @@ class Sudoku extends Component {
                     colinxmod.forEach(j => {
                         // console.log(String(this.state.gridValues[row_inx+i][col_inx+j]))
                         // console.log(String(num))
-                        if (this.state.gridValues[row_inx + i][col_inx + j] === num) {
-                            return
+                        if (this.state.gridValues[row_inx + i][col_inx + j] === String(num)) {
+                            flag = true
+                            this.setState({ gameBoardBorderStyle: "8px solid #E77" });
+                            setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
                         }
                     });
                 });
             }
-
-
-
-
-
-
-
-            let new_matrix = []
-            for (let i = 0; i < this.state.gridValues.length; i++) {
-                let row = []
-                for (let j = 0; j < this.state.gridValues[i].length; j++) {
-                    if (i === this.state.selectedGrid.row_index && j === this.state.selectedGrid.col_index && this.state.problem.content[i][j] === "0") {
-                        // console.log(typeof this.state.gridValues[i][j])
-                        row.push(String(event.keyCode - shift))
+            if (flag === false) {
+                let new_matrix = []
+                for (let i = 0; i < this.state.gridValues.length; i++) {
+                    let row = []
+                    for (let j = 0; j < this.state.gridValues[i].length; j++) {
+                        if (i === this.state.selectedGrid.row_index && j === this.state.selectedGrid.col_index && this.state.problem.content[i][j] === "0") {
+                            // console.log(typeof this.state.gridValues[i][j])
+                            row.push(String(event.keyCode - shift))
+                        }
+                        else {
+                            row.push(this.state.gridValues[i][j])
+                        }
                     }
-                    else {
-                        row.push(this.state.gridValues[i][j])
-                    }
+                    new_matrix.push(row)
                 }
-                new_matrix.push(row)
+                this.setState({ gridValues: new_matrix })
             }
-            this.setState({ gridValues: new_matrix })
+
+
+
+
+
+
+
             // console.log(event.value)
             // console.log(this.state.gridValues)
         }
         // console.log(this.state.gridValues)
         // if (this.state.problem.content[this.state.selectedGrid.row_index][this.state.selectedGrid.col_index] === "0") {}
+        // let count = 0
+        // for (let i = 0; i < 9; i++) {
+        //     for (let j = 0; j < 9; j++) {
+        //         // console.log(this.state.gridValues[i][j])
+        //         if (this.state.gridValues[i][j] !== "0") {
+        //             count = count+1
+        //         }
+        //     }
+        // }
+        // console.log(count)
+        // console.log(flag)
+        // if (count == 81 && flag == false) {
+        //     this.setState({ completeFlag: true });
+        //     setTimeout(() => { this.setState({ completeFlag: false }); }, 2500);
+        // }
+
     }
 
     handleScreenKeyboardInput = (num) => {
@@ -103,14 +132,23 @@ class Sudoku extends Component {
         // console.log("index:")
         // console.log(this.state.selectedGrid.row_index)
         // console.log(this.state.selectedGrid.col_index)
-        if (num !== 0){
+        let flag = false
+        if (num !== 0) {
             const row_inx = this.state.selectedGrid.row_index
             const col_inx = this.state.selectedGrid.col_index
             for (let i = 0; i < 9; i++) {
-                if (this.state.gridValues[i][col_inx] === String(num)) return
+                if (this.state.gridValues[i][col_inx] === String(num)) {
+                    flag = true
+                    this.setState({ gameBoardBorderStyle: "8px solid #E77" });
+                    setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                }
             }
             for (let j = 0; j < 9; j++) {
-                if (this.state.gridValues[row_inx][j] === String(num)) return
+                if (this.state.gridValues[row_inx][j] === String(num)) {
+                    flag = true
+                    this.setState({ gameBoardBorderStyle: "8px solid #E77" });
+                    setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
+                }
             }
             const test = [[0, 1, 2], [-1, 0, 1], [-2, -1, 0]]
             const rowinxmod = test[row_inx % 3]
@@ -123,27 +161,48 @@ class Sudoku extends Component {
                     // console.log(String(this.state.gridValues[row_inx+i][col_inx+j]))
                     // console.log(String(num))
                     if (this.state.gridValues[row_inx + i][col_inx + j] === num) {
-                        return
+                        flag = true
+                        this.setState({ gameBoardBorderStyle: "8px solid #E77" });
+                        setTimeout(() => { this.setState({ gameBordBoarderStyle: "8px solid #333" }); }, 1000);
                     }
                 });
             });
         }
-        
 
-        let new_matrix = []
-        for (let i = 0; i < this.state.gridValues.length; i++) {
-            let row = []
-            for (let j = 0; j < this.state.gridValues[i].length; j++) {
-                if (i === this.state.selectedGrid.row_index && j === this.state.selectedGrid.col_index && this.state.problem.content[i][j] === "0") {
-                    row.push(String(num))
+        if (flag === false) {
+            let new_matrix = []
+            for (let i = 0; i < this.state.gridValues.length; i++) {
+                let row = []
+                for (let j = 0; j < this.state.gridValues[i].length; j++) {
+                    if (i === this.state.selectedGrid.row_index && j === this.state.selectedGrid.col_index && this.state.problem.content[i][j] === "0") {
+                        row.push(String(num))
+                    }
+                    else {
+                        row.push(this.state.gridValues[i][j])
+                    }
                 }
-                else {
-                    row.push(this.state.gridValues[i][j])
-                }
+                new_matrix.push(row)
             }
-            new_matrix.push(row)
+            this.setState({ gridValues: new_matrix })
         }
-        this.setState({ gridValues: new_matrix })
+
+
+        // let count = 1
+        // for (let i = 0; i < 9; i++) {
+        //     for (let j = 0; j < 9; j++) {
+        //         // console.log(this.state.gridValues[i][j])
+        //         if (this.state.gridValues[i][j] !== "0") {
+        //             count = count+1
+        //         }
+        //     }
+        // }
+        // console.log(count)
+        // console.log(flag)
+        // if (count == 81 && flag == false) {
+        //     this.setState({ completeFlag: true });
+        //     setTimeout(() => { this.setState({ completeFlag: false }); }, 2500);
+        // }
+
     }
 
     componentDidMount = () => {
